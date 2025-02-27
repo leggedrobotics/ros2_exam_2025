@@ -1,0 +1,8 @@
+occupancy_map_node: 
+  ros__parameters:
+    scan_topic: "/scan"
+    map_length: 20.0
+    map_width: 20.0
+    map_resolution: 0.1
+    robot_radius: 0.5
+    blow_up_radius: 0.05

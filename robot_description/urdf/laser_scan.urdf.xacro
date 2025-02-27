@@ -1,0 +1,28 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+    <xacro:macro name="laser_scan" params="lidar_sensor_frame">
+        <!-- Laser sensor gz plugin configuration -->
+        <gazebo reference="${lidar_sensor_frame}">
+            <sensor name="laser_sensor" type="gpu_lidar">
+                <always_on>1</always_on>
+                <visualize>true</visualize>
+                <update_rate>10</update_rate>
+                <topic>scan</topic>
+                <gz_frame_id>${lidar_sensor_frame}</gz_frame_id>
+                <lidar>
+                    <scan>
+                        <horizontal>
+                            <samples>320</samples>
+                            <min_angle>0.0</min_angle>
+                            <max_angle>6.28</max_angle>
+                        </horizontal>
+                    </scan>
+                    <range>
+                        <min>0.2</min>
+                        <max>10.0</max>
+                        <resolution>0.01</resolution>
+                    </range>
+                </lidar>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>

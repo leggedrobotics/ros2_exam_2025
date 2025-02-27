@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="lidar_mount" params="base_link">
+    <xacro:property name="mount_base_link" value="${base_link}" />
+    <xacro:property name="mount_origin_rpy" value="0 0 0" />
+    <xacro:property name="mount_origin_xyz" value="0.0245 0 ${chassisHeight}" />
+
+    <link name="lidar_mount_link">
+      <visual>
+        <geometry>
+          <mesh filename="file://$(find robot_description)/urdf/meshes/LidarBoxV2.dae" />
+        </geometry>
+      </visual>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-4" />
+        <xacro:cylinder_inertia m="1e-4" r="1e-4" h="1e-4" />
+      </inertial>
+    </link>
+
+    <gazebo reference="lidar_mount_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <!-- Add the lidar sensor frame. Lidar sensor plugin will attach to this frame -->
+    <link name="lidar_sensor_frame" /> <!-- Dummy link for the sensor frame -->
+    <joint name="lidar_sensor_joint" type="fixed">
+      <parent link="lidar_mount_link" />
+      <child link="lidar_sensor_frame" />
+      <origin xyz="0 0 0.14" rpy="0 0 0" /> <!-- Sensor offset from the lidar mount -->
+    </joint>
+
+    <joint name="lidar_mount_joint" type="fixed">
+      <origin xyz="${mount_origin_xyz}" rpy="${mount_origin_rpy}" />
+      <parent link="${mount_base_link}" />
+      <child link="lidar_mount_link" />
+    </joint>
+
+  </xacro:macro>
+</robot>

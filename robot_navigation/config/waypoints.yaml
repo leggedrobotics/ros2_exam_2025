@@ -1,0 +1,17 @@
+waypoints:
+  - position:
+      x: 5.0
+      y: 4.0
+    yaw: 1.57  # Yaw in radians
+  - position:
+      x: 0.0
+      y: 7.5
+    yaw: 3.14
+  - position:
+      x: -5.0
+      y: 8.0
+    yaw: 3.925
+  - position:
+      x: 0.0
+      y: 0.0
+    yaw: 0.0 

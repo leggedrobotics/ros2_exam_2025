@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+  <xacro:include filename="$(find robot_description)/urdf/robot_utils.urdf.xacro" />
+
+  <!-- Arguments -->
+  <xacro:arg name="wheel_joint_type" default="continuous" />
+  <xacro:arg name="use_diff_drive_plugin" default="true" />
+
+  <!-- Includes -->
+  <!-- This loads a bunch of xacro properties -->
+  <xacro:include filename="$(find robot_description)/urdf/properties.urdf.xacro" />
+
+  <!-- This load the diff drive plugin -->
+  <xacro:include filename="$(find robot_description)/urdf/robot_gz_diff_drive_plugin.urdf.xacro" />
+
+  <!-- This loads the robot -->
+  <xacro:include filename="$(find robot_description)/urdf/robot.urdf.xacro" />
+
+  <!-- Include the diff drive plugin if needed -->
+  <xacro:if value="$(arg use_diff_drive_plugin)">
+    <xacro:robot_gz_diff_drive_plugin />
+  </xacro:if>
+
+  <xacro:robot wheel_joint_type="$(arg wheel_joint_type)" />
+
+</robot>

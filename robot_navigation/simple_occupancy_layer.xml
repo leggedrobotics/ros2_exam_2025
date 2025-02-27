@@ -1,0 +1,6 @@
+<library path="simple_occupancy_layer_lib">
+    <class type="robot_navigation::SimpleObstacleLayer"
+        base_class_type="nav2_costmap_2d::Layer">
+        <description>A simple obstacle layer that uses a costmap to keep track of obstacles.</description>
+    </class>
+</library>
